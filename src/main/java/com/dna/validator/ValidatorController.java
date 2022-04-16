@@ -32,15 +32,16 @@ public class ValidatorController {
     })
     public ResponseEntity validate(@RequestBody ValidateRequest request){
         try{
-            boolean response = validatorService.isMutant(request.getDna());
-
-            statsSaveService.save(request.getDna(),response);
-
+            boolean response;
+            if (validatorService.sequenceValid(request.getDna())){
+                response = validatorService.isMutant(request.getDna());
+                statsSaveService.save(request.getDna(),response);
             return response ?
                     ResponseEntity.status(HttpStatus.OK).build() :
                     ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }catch(HttpClientErrorException e){
-            return ResponseEntity.status(e.getStatusCode()).build();
+            }else{
+                throw new HttpClientErrorException(HttpStatus.BAD_REQUEST);
+            }
         }
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

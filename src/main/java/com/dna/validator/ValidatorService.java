@@ -1,11 +1,10 @@
 package com.dna.validator;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 @Service
 public class ValidatorService implements IValidatorService{
@@ -23,11 +22,7 @@ public class ValidatorService implements IValidatorService{
      */
     public Boolean isMutant(String[] dna) {
         matchCounter = 0;
-        if(sequenceValid(dna)){
-            return processSequence(dna);
-        }else{
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST);
-        }
+        return processSequence(dna);
     }
 
     /**
@@ -146,7 +141,7 @@ public class ValidatorService implements IValidatorService{
      * @param dna secuencia de adn a validar
      * @return true si cumple con las condiciones, false en caso contrario
      */
-    private boolean sequenceValid(String[] dna) {
+    public boolean sequenceValid(String[] dna) {
         return lengthValid(dna) && contentValid(dna);
     }
 
@@ -166,6 +161,6 @@ public class ValidatorService implements IValidatorService{
      * @return true si cumple con las condiciones, false en caso contrario
      */
     private boolean lengthValid(String[] dna) {
-        return (dna[0].length() == dna.length) && dna.length > 4;
+        return (dna[0].length() == dna.length) && dna.length >= 4;
     }
 }
