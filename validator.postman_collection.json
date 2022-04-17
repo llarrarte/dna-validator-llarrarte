@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "5256ec37-f14c-4d60-8530-9e01ef8765c0",
+		"name": "validator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "mutants",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dna\": [\r\n        \"AAAAA\",\r\n        \"GTGGT\",\r\n        \"TGGAG\",\r\n        \"TGATT\",\r\n        \"GCACT\"        \r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://dnavalidator-env.eba-mnmepydc.us-east-1.elasticbeanstalk.com/mutants",
+					"protocol": "http",
+					"host": [
+						"dnavalidator-env",
+						"eba-mnmepydc",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"mutants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dnavalidator-env.eba-mnmepydc.us-east-1.elasticbeanstalk.com/stats",
+					"protocol": "http",
+					"host": [
+						"dnavalidator-env",
+						"eba-mnmepydc",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"stats"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
