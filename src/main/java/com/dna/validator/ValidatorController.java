@@ -40,7 +40,7 @@ public class ValidatorController {
                     ResponseEntity.status(HttpStatus.OK).build() :
                     ResponseEntity.status(HttpStatus.FORBIDDEN).build();
             }else{
-                throw new HttpClientErrorException(HttpStatus.BAD_REQUEST);
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
         }
         catch (Exception e){
